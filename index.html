@@ -1,0 +1,42 @@
+<html>
+<head>
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["name"].value;
+  if (x == "") 
+  {
+    alert("Name must be filled out");
+    return false;
+
+  }
+  var x = document.forms["myForm"]["email"].value;
+   if (x == "") 
+{
+    alert("email must be filled out");
+    return false;
+
+  }
+}
+</script>
+</head>
+<h2> Fill the Form </h2>
+<body>
+
+<form name="myForm"action="w.php" method="GET" onsubmit="return validateForm()" >
+
+ Name: <input type="text" name="name">
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+
+Phone: <input type="number" name="phone"><br><br>
+
+State: <input type="text" name="state"><br><br>
+
+<input type="submit">
+</form>
+
+</body>
+</html> 
