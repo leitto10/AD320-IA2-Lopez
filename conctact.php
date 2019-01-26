@@ -9,8 +9,8 @@
 
 <?php
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
-$name = $email = $gender = $comment = $website = "";
+$nameErr = $emailErr = "";
+$name = $email = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -32,16 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $emailErr = "Invalid email format"; 
     }
   }
-    
-  if (empty($_POST["website"])) {
-    $website = "";
-  } else {
-    $website = test_input($_POST["website"]);
-    // check if URL address syntax is valid
-    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
-      $websiteErr = "Invalid URL"; 
-    }    
-  }
+
+    $tel = '091-9869123456';
+
+    if(preg_match("/^[091]{3}-[0-9]{10}$/", $tel)) {
+        echo "valid";
+    } else {
+        echo "invalid";
+    }
 
   if (empty($_POST["comment"])) {
     $comment = "";
@@ -64,7 +62,7 @@ function test_input($data) {
 }
 ?>
 
-<h2>PHP Form Validation Example</h2>
+<h2>Contact Jose</h2>
 <p><span class="error">* required field</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
   Name: <input type="text" name="name">
@@ -73,8 +71,8 @@ function test_input($data) {
   E-mail: <input type="text" name="email">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
-  Website: <input type="text" name="website">
-  <span class="error"><?php echo $websiteErr;?></span>
+  Phone#: <input type="tel" name="phone" id="phone">
+  <span class="error"><?php echo $pone;?></span>
   <br><br>
   Comment: <textarea name="comment" rows="5" cols="40"></textarea>
   <br><br>
@@ -87,7 +85,7 @@ echo $name;
 echo "<br>";
 echo $email;
 echo "<br>";
-echo $website;
+echo $phone;
 echo "<br>";
 echo $comment;
 ?>
